@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  names: MyString
+  references: MyString
+  categories: MyString
+  prices: 1.5
+
+two:
+  names: MyString
+  references: MyString
+  categories: MyString
+  prices: 1.5
