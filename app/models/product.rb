@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  belongs_to :destination, optional: true
+
   validates :name, :category, :price, :reference, presence: true
 
   def find_destination
@@ -12,5 +14,11 @@ class Product < ApplicationRecord
       ORDER BY rating
       LIMIT 1;
     SQL
+  end
+
+  def set_destination
+    matched_destination = find_destination.first
+    matched_destination_id = matched_destination['rating'] > 0 ? matched_destination['id'] : nil
+    destination_id = matched_destination_id
   end
 end

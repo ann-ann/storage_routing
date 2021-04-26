@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Names</th>
       <th>References</th>
       <th>Categories</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @destinations.each do |destination| %>
       <tr>
+        <td><%= destination.name %></td>
         <td><%= destination.names %></td>
         <td><%= destination.references %></td>
         <td><%= destination.categories %></td>
@@ -31,3 +33,4 @@
 <br>
 
 <%= link_to 'New Destination', new_destination_path %>
+<%= link_to 'Products', products_path %>

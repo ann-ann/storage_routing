@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[ show edit update destroy set_destination]
 
   # GET /products or /products.json
   def index
@@ -57,12 +57,14 @@ class ProductsController < ApplicationController
   end
 
   def set_destination
-    if @product.update(destination_id: Destination.find(@product.find_destination.first['id']))
-      format.html { redirect_to @product, notice: "Destination was successfully set to product." }
-      format.json { render :show, status: :ok, location: @product }
-    else
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @product.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @product.set_destination && @product.destination_id_changed? && @product.save
+        format.html { redirect_to @product, notice: "Destination was successfully set to product." }
+        format.json { render :show, status: :ok, location: @product }
+      else
+        format.html { redirect_to @product, notice: "Destination wasn't updated." }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
   end
 
