@@ -19,6 +19,6 @@ class Product < ApplicationRecord
   def set_destination
     matched_destination = find_destination.first
     matched_destination_id = matched_destination['rating'] > 0 ? matched_destination['id'] : nil
-    destination_id = matched_destination_id
+    self.destination_id = matched_destination_id
   end
 end
